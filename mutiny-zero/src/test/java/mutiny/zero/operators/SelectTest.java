@@ -1,15 +1,14 @@
 package mutiny.zero.operators;
 
-import io.smallrye.mutiny.helpers.test.AssertSubscriber;
-import mutiny.zero.ZeroPublisher;
-import org.assertj.core.api.Assertions;
-import org.junit.jupiter.api.Test;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.concurrent.Flow;
 
-import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
+import io.smallrye.mutiny.helpers.test.AssertSubscriber;
+import mutiny.zero.ZeroPublisher;
 
 class SelectTest {
 
@@ -36,5 +35,18 @@ class SelectTest {
         assertThatThrownBy(() -> new Select<>(ZeroPublisher.empty(), null))
                 .isInstanceOf(NullPointerException.class)
                 .hasMessageContaining("cannot be null");
+    }
+
+    @Test
+    void handleThrowingPredicate() {
+        Flow.Publisher<Integer> source = ZeroPublisher.fromItems(1, 2, 3, 4);
+        Select<Integer> operator = new Select<>(source, n -> {
+            throw new RuntimeException("yolo");
+        });
+
+        AssertSubscriber<Object> sub = AssertSubscriber.create(Long.MAX_VALUE);
+        operator.subscribe(sub);
+
+        sub.assertFailedWith(RuntimeException.class, "yolo");
     }
 }

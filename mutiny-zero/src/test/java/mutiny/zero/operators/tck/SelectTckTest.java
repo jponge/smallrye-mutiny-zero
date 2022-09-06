@@ -1,12 +1,13 @@
 package mutiny.zero.operators.tck;
 
-import io.smallrye.mutiny.Multi;
-import mutiny.zero.operators.Select;
+import java.util.Random;
+import java.util.concurrent.Flow;
+
 import org.reactivestreams.tck.TestEnvironment;
 import org.reactivestreams.tck.flow.FlowPublisherVerification;
 
-import java.util.Random;
-import java.util.concurrent.Flow;
+import io.smallrye.mutiny.Multi;
+import mutiny.zero.operators.Select;
 
 public class SelectTckTest extends FlowPublisherVerification<Long> {
 

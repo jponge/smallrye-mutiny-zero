@@ -1,6 +1,5 @@
 package mutiny.zero.operators;
 
-
 import java.util.concurrent.Flow;
 import java.util.concurrent.atomic.AtomicBoolean;
 

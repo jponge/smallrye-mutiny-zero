@@ -1,12 +1,13 @@
 package mutiny.zero.operators.tck;
 
-import io.smallrye.mutiny.Multi;
-import mutiny.zero.operators.Transform;
+import java.util.Random;
+import java.util.concurrent.Flow;
+
 import org.reactivestreams.tck.TestEnvironment;
 import org.reactivestreams.tck.flow.FlowPublisherVerification;
 
-import java.util.Random;
-import java.util.concurrent.Flow;
+import io.smallrye.mutiny.Multi;
+import mutiny.zero.operators.Transform;
 
 public class TransformTckTest extends FlowPublisherVerification<Long> {
 
