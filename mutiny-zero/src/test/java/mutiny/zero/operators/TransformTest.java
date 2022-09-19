@@ -5,14 +5,17 @@ import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.concurrent.Flow;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import io.smallrye.mutiny.helpers.test.AssertSubscriber;
 import mutiny.zero.ZeroPublisher;
 
+@DisplayName("Transform operator tests")
 class TransformTest {
 
     @Test
+    @DisplayName("Transform items")
     void transformItems() {
         Flow.Publisher<Integer> source = ZeroPublisher.fromItems(1, 2, 3);
         Transform<Integer, String> operator = new Transform<>(source, n -> n + ":" + (n * 100));
@@ -24,6 +27,7 @@ class TransformTest {
     }
 
     @Test
+    @DisplayName("Reject a null source")
     void rejectNullSource() {
         assertThatThrownBy(() -> new Transform<>(null, n -> n))
                 .isInstanceOf(NullPointerException.class)
@@ -31,6 +35,7 @@ class TransformTest {
     }
 
     @Test
+    @DisplayName("Reject a null function")
     void rejectNullFunction() {
         assertThatThrownBy(() -> new Transform<>(ZeroPublisher.empty(), null))
                 .isInstanceOf(NullPointerException.class)
@@ -38,6 +43,7 @@ class TransformTest {
     }
 
     @Test
+    @DisplayName("Handle a function throwing an exception")
     void handleThrowingFunction() {
         Flow.Publisher<Integer> source = ZeroPublisher.fromItems(1, 2, 3);
         Transform<Integer, String> operator = new Transform<>(source, n -> {
@@ -51,6 +57,7 @@ class TransformTest {
     }
 
     @Test
+    @DisplayName("Handle a function producing a null item")
     void handleNullProducingFunction() {
         Flow.Publisher<Integer> source = ZeroPublisher.fromItems(1, 2, 3);
         Transform<Integer, String> operator = new Transform<>(source, n -> null);
