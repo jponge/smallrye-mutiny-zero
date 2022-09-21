@@ -42,6 +42,29 @@
             <artifactId>mutiny</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.reactivestreams</groupId>
+            <artifactId>reactive-streams-tck-flow</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- TestNG running in JUnit5 -->
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.support</groupId>
+            <artifactId>testng-engine</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <scope>test</scope>
+        </dependency>
     </dependencies>
 
 </project>
