@@ -1,18 +1,19 @@
 package mutiny.zero.vertxpublishers.tck;
 
-import io.smallrye.mutiny.Multi;
-import io.vertx.core.Vertx;
-import mutiny.zero.vertxpublishers.VertxPublisher;
-import org.reactivestreams.tck.TestEnvironment;
-import org.reactivestreams.tck.flow.FlowPublisherVerification;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
+import static org.awaitility.Awaitility.await;
 
 import java.util.concurrent.Flow;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-import static org.awaitility.Awaitility.await;
+import org.reactivestreams.tck.TestEnvironment;
+import org.reactivestreams.tck.flow.FlowPublisherVerification;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+
+import io.smallrye.mutiny.Multi;
+import io.vertx.core.Vertx;
+import mutiny.zero.vertxpublishers.VertxPublisher;
 
 public class VertxPublisherTckTest extends FlowPublisherVerification<Long> {
 
