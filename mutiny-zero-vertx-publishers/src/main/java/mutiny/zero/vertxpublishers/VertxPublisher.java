@@ -1,13 +1,12 @@
 package mutiny.zero.vertxpublishers;
 
-import io.vertx.core.Future;
-import io.vertx.core.streams.ReadStream;
+import static java.util.Objects.requireNonNull;
 
-import java.util.concurrent.Flow;
 import java.util.concurrent.Flow.Publisher;
 import java.util.function.Supplier;
 
-import static java.util.Objects.requireNonNull;
+import io.vertx.core.Future;
+import io.vertx.core.streams.ReadStream;
 
 public interface VertxPublisher {
 
@@ -17,7 +16,7 @@ public interface VertxPublisher {
     }
 
     static <T> Publisher<T> fromFuture(Supplier<Future<? extends ReadStream<T>>> futureStreamSupplier) {
-        requireNonNull(futureStreamSupplier, "The future supplier cabbot be null");
+        requireNonNull(futureStreamSupplier, "The future supplier cannot be null");
         return new SuppliedFutureStreamPublisher<>(futureStreamSupplier);
     }
 }

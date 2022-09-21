@@ -1,11 +1,11 @@
 package mutiny.zero.vertxpublishers;
 
+import java.util.concurrent.Flow;
+
 import io.vertx.core.streams.ReadStream;
 import mutiny.zero.BackpressureStrategy;
 import mutiny.zero.TubeConfiguration;
 import mutiny.zero.ZeroPublisher;
-
-import java.util.concurrent.Flow;
 
 abstract class PublisherBase<T> implements Flow.Publisher<T> {
 
